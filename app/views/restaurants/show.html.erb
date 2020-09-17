@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+  </h1>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @restaurant.address %>
+  </p>
+
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @restaurant.phone_number %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @restaurant.category %>
+  </p>
+
+  <p>
+    <%= link_to 'Add a Review', new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  </p>
+
+
+  <% if @restaurant.reviews.count.zero? %>
+    <p>
+      Be the first to leave a review
+    </p>
+  <% else %>
+    <ul>
+      <h4>What do clients say about <%= @restaurant.name %></h4>
+      <% @restaurant.reviews.each do |review| %>
+        <li>
+          <%= review.content %>
+          <%= review.rating %>
+          </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= link_to 'Check all restaurants', restaurants_path, class: "btn btn-primary" %>
+</div>
